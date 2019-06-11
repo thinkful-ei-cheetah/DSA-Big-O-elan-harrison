@@ -132,17 +132,86 @@ const findWayOut = function(maze, position=0, row=0, column=0, path=[], directio
 findWayOut(maze)
 
 //10. Anagrams
-// Polynomial time O(n^2)
-const anagramFinder = function(word) {
-  if (!word.length) {
-    return ''
+// Polynomial time O(n^3)
+const anagramFinder = function (word) {
+  let list = [];
+  if (word.length === 1) {
+    list.push(word[0]);
+    return list;
   }
-  let prefixes = []
   for (let i = 0; i < word.length; i++) {
-    prefixes.push(word.substr(i))
+    const prefix = word[i];
+    const rest = word.substring(0, i) + word.substring(i + 1);
+    let words = anagramFinder(rest);
+    for (let j = 0; j < words.length; j++) {
+      list.push(prefix + words[j]);
+    }
   }
-  console.log(prefixes)
-  return prefix + anagramFinder(word.slice(1, word.length))
-}
+  return list;
+};
 
-anagramFinder(axe) // => axe aex xae xea eax exa
+anagramFinder('axe'); // => axe aex xae xea eax exa
+
+//11. Organization Chart
+// Polynomial runtime O(n^2)
+const facebook = {
+  Zuckerberg: {
+    Schroepfer: {
+      Bosworth: {
+        Steve: {},
+        Kyle: {},
+        Andra: {}
+      },
+      Zhao: {
+        Richie: {},
+        Sofia: {}
+      }
+    },
+    Schrage: {
+      VanDyck: {
+        Sabrina: {},
+        Michelle: {},
+        Josh: {}
+      },
+      Swain: {
+        Blanch: {},
+        Tom: {},
+        Joe: {}
+      }
+    },
+    Sandberg: {
+      Goler: {
+        Eddie: {},
+        Julie: {},
+        Annie: {}
+      },
+      Hernandez: {
+        Rowi: {},
+        Inga: {},
+        Morgan: {}
+      },
+      Moissinac: {
+        Amy: {},
+        Chuck: {},
+        Vinni: {}
+      },
+      Kelley: {
+        Eric: {},
+        Ana: {},
+        Wes: {}
+      }
+    }
+  }
+};
+
+const orgChart = function (obj, indent = '') {
+  let output = '';
+  for (let key in obj) {
+    // let indent = '  ';
+    output = output + indent + key + '\n';
+    output = output + orgChart(obj[key], indent+'     ');
+  }
+  return output;
+};
+
+console.log(orgChart(facebook));
