@@ -1,0 +1,20 @@
+1a. O(1); we do not need to loop through all 15 people. As soon as we find one, we can stop. 
+1b. O(n); we have to loop through all 15 people in this case, stopping only when there is no one else to ask instead of as soon as there is a match.
+
+2. O(1); this is simple arithmetic. We have one operation on one value. 
+
+3. O(n^2); this is because we have one for loop, and then another nested for loop. The outer loop runs the inner loop n times, and each time the inner loop runs n times. 
+
+4. O(n); we are iterating through every value of the array, so there will be a proportionate increase in time complexity when the input is bigger.
+
+5. O(n); unlike the above example, this algorithm allows us to break out of our loop early, so it will have a faster runtime.
+
+6. O(n^2); another nested for loop with two levels. 
+
+7. O(n); we have another for loop here. This algorithm sums the previous two values in the sequence (0, 1, 1, 2, 3, 5). 
+
+8. O(log(n)); given that we are starting in the middle of the array, we can effectively eliminate a subset of our data, so we don't have to operate on every single input. 
+
+9. O(1); using array indexing, we can keep a constant time complexity. 
+
+10. 0(n); if n is odd, return true, otherwise, return false. 
